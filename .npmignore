@@ -1,0 +1,6 @@
+*.sock
+config/local.json
+node_modules
+npm-debug.log
+*.log
+src

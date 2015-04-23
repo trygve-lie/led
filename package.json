@@ -1,0 +1,52 @@
+{
+  "name": "led",
+  "version": "1.0.0",
+  "author": {
+    "name": "Trygve Lie",
+    "email": "post@trygve-lie.com"
+  },
+  "description": "Live edit publishing",
+  "main": "./bin/server",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:trygve-lie/led.git"
+  },
+  "keywords": [
+    "publishing",
+    "live",
+    "real time"
+  ],
+  "scripts": {
+    "start": "node ./bin/server.js | ./node_modules/bunyan/bin/bunyan -o short",
+    "start-1": "node ./bin/server.js --http-port 9001 | ./node_modules/bunyan/bin/bunyan -o short",
+    "start-2": "node ./bin/server.js --http-port 9002 | ./node_modules/bunyan/bin/bunyan -o short",
+    "start-3": "node ./bin/server.js --http-port 9003 | ./node_modules/bunyan/bin/bunyan -o short",
+    "start-4": "node ./bin/server.js --http-port 9004 | ./node_modules/bunyan/bin/bunyan -o short"
+  },
+  "contributors": [
+    {
+      "name": "Trygve Lie",
+      "email": "post@trygve-lie.com"
+    }
+  ],
+  "engines": {
+    "node": "0.10.x"
+  },
+  "bugs": {
+    "url": "https://github.com/trygve-lie/led/issues"
+  },
+  "licenses": [],
+  "dependencies": {
+    "express": "4.x",
+    "convict": "0.6.x",
+    "bunyan": "1.3.x",
+    "serve-static": "1.9.x",
+    "redis": "0.12.x",
+    "livedb": "0.5.x",
+    "livedb-mongo": "^0.4.1",
+    "primus": "^3.0.2",
+    "share": "0.7.x",
+    "rich-text": "1.x",
+    "ws" : "0.7.x"
+  }
+}
