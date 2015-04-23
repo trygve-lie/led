@@ -5,16 +5,11 @@
     <meta name="viewport" id="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, initial-scale=1">
     <title>LED</title>
     <link rel="stylesheet" href="quill/quill.snow.css">
-    <script src="quill/quill.js"></script>
-    <script src="rich-text.js"></script>
-    <script src="share.js"></script>
-    <script src="app.js" defer async></script>
+    <script src="/js/share.js" async></script>
+    <script src="/js/app.js" defer async></script>
 </head>
 <body>
-<!--
-<label>Name: <input type="text" id="name" value="" /></label>
-<label>Cursor colour: <input id="cursor-colour" type="color" /></label>
--->
+
 <div class="quill-wrapper">
     
     <!-- Toolbar container -->
@@ -127,6 +122,10 @@
     <div id="editor" style="border:1px solid;padding: 5px;  min-height: 300px;">
         <div>Write something</div>
     </div>
+
+    <label>Name: <input type="text" id="name" value="" /></label>
+    <label>Cursor colour: <input id="cursor-colour" type="color" /></label>
+
 </div>
 </body>
 </html>

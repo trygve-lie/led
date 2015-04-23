@@ -10,7 +10,7 @@ var path        = require('path'),
     DB          = require('./db.js'),
     log         = require('./log.js'),
     config      = require('./config.js'),
-
+    assets      = require('./assets.js'),
 
     WebSocket   = require('ws').Server,
 
@@ -26,6 +26,8 @@ var path        = require('path'),
 
 
 
+// Set up database connections
+
 var db = new DB(config.get('redisHost'), config.get('redisPort'), config.get('mongoHost'), config.get('mongoPort'), log);
 
 
@@ -39,23 +41,23 @@ var share   = sharejs.server.createClient({backend: backend});
 // Register OT types
 
 livedb.ot.registerType(richText.type);
-/*
-setTimeout(function() {
-    backend.fetch('docs', 'hello2', function (err, snapshot) {
-        var delta = new Delta();
-        console.log(JSON.stringify(snapshot, null, 2));
+
+
+// Subscribe to a document and stream it
+
+backend.fetchAndSubscribe('docs', 'hello2', function(err, data, stream) {
+    stream.on('data', function(op) {
+        log.debug(JSON.stringify(op));
     });
-}, 1000);
-*/
+});
+
 
 
 // Set up http routes
 
-app.use('/', serveStatic(path.resolve(__dirname, '../' + config.get('docRoot'))));
-app.use(serveStatic(sharejs.scriptsDir));
-console.log(sharejs.scriptsDir);
-
-
+app.use(serveStatic(path.resolve(__dirname, '..' + config.get('docRoot'))));
+app.use('/js/', serveStatic(sharejs.scriptsDir));
+app.get('/js/app.js', assets.js);
 
 
 
@@ -91,7 +93,7 @@ editWss.on('connection', function (client) {
     stream.remoteAddress = client.upgradeReq.connection.remoteAddress;
 
     client.on('message', function (data) {
-        log.debug(data);
+//        log.debug(data);
         stream.push(JSON.parse(data));
     });
 

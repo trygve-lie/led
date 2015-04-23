@@ -3,6 +3,7 @@
 "use strict";
 
 var fs      = require('fs'),
+    path    = require('path'),
     convict = require('convict'),
     pckage  = require('../package.json');
 
@@ -42,7 +43,7 @@ env: {
     docRoot: {
         doc     : "Document root for static files to be served by the http server",
         format  : String,
-        default : "./public"
+        default : "/public"
     },
 
     logConsoleLevel: {
@@ -87,10 +88,10 @@ env: {
 
 var env = conf.get('env');
 
-if (fs.existsSync('./config/local.json')) {
-    conf.loadFile(['./config/' + env + '.json', './config/local.json']);
+if (fs.existsSync(path.resolve(__dirname, '../config/local.json'))) {
+    conf.loadFile([path.resolve(__dirname, '../config/', env + '.json'), path.resolve(__dirname, '../config/local.json')]);
 } else {
-    conf.loadFile(['./config/' + env + '.json']);
+    conf.loadFile([path.resolve(__dirname, '../config/', env + '.json')]);
 }
 
 conf.validate();

@@ -47,6 +47,8 @@
     "primus": "^3.0.2",
     "share": "0.7.x",
     "rich-text": "1.x",
-    "ws" : "0.7.x"
+    "ws" : "0.7.x",
+    "browserify": "9.x",
+    "quill": "0.19.x"
   }
 }
